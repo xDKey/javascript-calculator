@@ -1,0 +1,39 @@
+.button{
+    font-family: Lexend;
+    font-size: 26px;
+
+    width: 70px;
+    height: 70px;
+
+    background-color: rgb(54, 53, 53);
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
+    box-sizing: border-box;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.button:hover{
+    border-color: cyan;
+    color: black
+}
+
+#zero{
+    width: 140px;
+}
+
+#clear{
+    width: 140px;
+    background: brown;
+}
+
+#equals{
+    height: 140px;
+    background: rgb(12, 141, 141);
+}

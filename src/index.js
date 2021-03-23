@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
-import App from './component/App/App';
+import Calculator from './component/Calculator/Calculator';
+import './style.css';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<Calculator />, document.querySelector('#root'));
