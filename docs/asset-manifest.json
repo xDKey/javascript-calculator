@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/javascript-calculator/static/css/main.667d6416.chunk.css",
+    "main.js": "/javascript-calculator/static/js/main.629283b0.chunk.js",
+    "main.js.map": "/javascript-calculator/static/js/main.629283b0.chunk.js.map",
+    "runtime-main.js": "/javascript-calculator/static/js/runtime-main.dcb3f885.js",
+    "runtime-main.js.map": "/javascript-calculator/static/js/runtime-main.dcb3f885.js.map",
+    "static/js/2.d4f3002d.chunk.js": "/javascript-calculator/static/js/2.d4f3002d.chunk.js",
+    "static/js/2.d4f3002d.chunk.js.map": "/javascript-calculator/static/js/2.d4f3002d.chunk.js.map",
+    "index.html": "/javascript-calculator/index.html",
+    "static/css/main.667d6416.chunk.css.map": "/javascript-calculator/static/css/main.667d6416.chunk.css.map",
+    "static/js/2.d4f3002d.chunk.js.LICENSE.txt": "/javascript-calculator/static/js/2.d4f3002d.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/javascript-calculator/static/media/Lexend-Medium.7f353eb0.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dcb3f885.js",
+    "static/js/2.d4f3002d.chunk.js",
+    "static/css/main.667d6416.chunk.css",
+    "static/js/main.629283b0.chunk.js"
+  ]
+}
