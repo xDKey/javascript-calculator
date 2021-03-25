@@ -1,21 +1,7 @@
 import { useState } from 'react';
-import Button from '../Button/Button';
+import ButtonsPad from '../ButtonsPad/ButtonsPad';
 import Display from '../Display/Display';
 import './Calculator.css';
-
-const buttons = {
-  buttonsForNumpad: [
-    'one',
-    'two',
-    'three',
-    'four',
-    'five',
-    'six',
-    'seven',
-    'eight',
-    'nine',
-  ],
-};
 
 const checkIsOperator = (str) => /[x/\-+]/g.test(str);
 const endsWithOperator = (str) => /.*[x\-+/]$/g.test(str);
@@ -47,7 +33,7 @@ const Calculator = () => {
 
   const handleOperatorClick = ({ target }) => {
     const value = target.innerText;
-    
+
     setCurrentDisplay(value);
     setIsCalculated(false);
     if (isCalculated) setAccumulateDisplay(prevDisplay + value);
@@ -93,10 +79,10 @@ const Calculator = () => {
       setIsCalculated(false);
     } else if (!currentDisplay.includes('.')) {
       setIsCalculated(false);
-      setCurrentDisplay(currentDisplay + '.')
-      setAccumulateDisplay(accumulateDisplay + '.')
-      }
+      setCurrentDisplay(currentDisplay + '.');
+      setAccumulateDisplay(accumulateDisplay + '.');
     }
+  };
 
   const reset = () => {
     setCurrentDisplay('0');
@@ -111,54 +97,13 @@ const Calculator = () => {
         accumulateDisplay={accumulateDisplay}
         currentDisplay={currentDisplay}
       />
-      <Button key='clear' id='clear' innerText='AC' handleClick={reset} />
-      <Button
-        key='divide'
-        id='divide'
-        innerText='/'
-        handleClick={handleOperatorClick}
+      <ButtonsPad
+        handleNumberClick={handleNumberClick}
+        handleOperatorClick={handleOperatorClick}
+        result={result}
+        handleDecimal={handleDecimal}
+        reset={reset}
       />
-      <Button
-        key='multiply'
-        id='multiply'
-        innerText='x'
-        handleClick={handleOperatorClick}
-      />
-      <div className='numpad'>
-        <Button
-          key='zero'
-          id='zero'
-          innerText={0}
-          handleClick={handleNumberClick}
-        />
-        <Button
-          key='decimal'
-          id='decimal'
-          innerText='.'
-          handleClick={handleDecimal}
-        />
-        {buttons.buttonsForNumpad.map((num, index) => (
-          <Button
-            key={num}
-            id={num}
-            innerText={index + 1}
-            handleClick={handleNumberClick}
-          />
-        ))}
-      </div>
-      <Button
-        key='subtract'
-        id='subtract'
-        innerText='-'
-        handleClick={handleOperatorClick}
-      />
-      <Button
-        key='add'
-        id='add'
-        innerText='+'
-        handleClick={handleOperatorClick}
-      />
-      <Button key='equals' id='equals' innerText='=' handleClick={result} />
     </div>
   );
 };
