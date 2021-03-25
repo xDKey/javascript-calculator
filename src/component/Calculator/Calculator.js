@@ -34,7 +34,7 @@ const Calculator = () => {
 
     expression = expression.replace(/x/g, '*');
     // eslint-disable-next-line no-eval
-    const answer = Math.round(1000 * eval(expression)) / 1000 + '';
+    const answer = Math.round(10000 * eval(expression)) / 10000 + '';
 
     setCurrentDisplay(answer);
     setAccumulateDisplay(`${accumulateDisplay} = ${answer}`);
@@ -48,30 +48,24 @@ const Calculator = () => {
     setAccumulateDisplay('');
     setIsCalculated(false);
   };
-
+  
   const handleClick = ({ target }) => {
     const value = target.innerText;
 
     if (value === '=') return result();
-    if (value === 'AC') return reset();
-
+    
     setIsCalculated(false);
 
-    if (isCalculated) {
-      setCurrentDisplay(prevDisplay)
-      setAccumulateDisplay(prevDisplay)
-      return false
-    }
-
+    if (value === 'AC') return reset();
+    if (currentDisplay.length > 11) return setCurrentDisplay('Too much digitals')
+    
     if (value === '.' && currentDisplay.includes('.')) return false;
 
-    if (currentDisplay === '0' || checkIsOperator(value))
-      setCurrentDisplay(value);
+    if (currentDisplay === '0' || checkIsOperator(value)) setCurrentDisplay(value);
     else setCurrentDisplay(currentDisplay + value);
 
     if (!checkIsOperator(value)) {
-      if (accumulateDisplay === '' || accumulateDisplay === '0')
-        return setAccumulateDisplay(value);
+      if (accumulateDisplay === '' || accumulateDisplay === '0') return setAccumulateDisplay(value);
       return setAccumulateDisplay(accumulateDisplay + value);
     }
 
