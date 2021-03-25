@@ -13,29 +13,7 @@ const Calculator = () => {
   const [accumulateDisplay, setAccumulateDisplay] = useState('');
   const [isCalculated, setIsCalculated] = useState(false);
 
-  const handleNumberClick = ({ target }) => {
-    const value = target.innerText;
-
-    setIsCalculated(false);
-    if (currentDisplay === '0' || checkIsOperator(currentDisplay))
-      setCurrentDisplay(value);
-    else setCurrentDisplay(currentDisplay + value);
-    setAccumulateDisplay(
-      currentDisplay === '0' && value === '0'
-        ? accumulateDisplay === ''
-          ? value
-          : accumulateDisplay
-        : /([^.0-9]0|^0)$/.test(accumulateDisplay)
-        ? accumulateDisplay.slice(0, -1) + value
-        : accumulateDisplay + value
-    );
-  };
-
-  const handleOperatorClick = ({ target }) => {
-    const value = target.innerText;
-
-    setCurrentDisplay(value);
-    setIsCalculated(false);
+  const handleOperatorClick = (value) => {
     if (isCalculated) setAccumulateDisplay(prevDisplay + value);
     else if (!endsWithOperator(accumulateDisplay)) {
       setPrevDisplay(accumulateDisplay);
@@ -49,39 +27,19 @@ const Calculator = () => {
   };
 
   const result = () => {
-    let expression = accumulateDisplay;
-    while (endsWithOperator(expression)) expression = expression.slice(0, -1);
-    expression = expression
-      .replace(/x/g, '*')
-      .replace(/‑/g, '-')
-      .replace('--', '+0+0+0+0+0+0+');
+    if (isCalculated) return false
+    let expression = endsWithOperator(accumulateDisplay)
+      ? accumulateDisplay.slice(0, -1)
+      : accumulateDisplay;
+
+    expression = expression.replace(/x/g, '*');
     // eslint-disable-next-line no-eval
-    let answer = Math.round(1000000000000 * eval(expression)) / 1000000000000;
-    setCurrentDisplay(answer.toString());
-    setAccumulateDisplay(
-      expression
-        .replace(/\*/g, '⋅')
-        .replace(/-/g, '‑')
-        .replace('+0+0+0+0+0+0+', '‑-')
-        .replace(/(x|\/|\+)‑/, '$1-')
-        .replace(/^‑/, '-') +
-        '=' +
-        answer
-    );
+    const answer = Math.round(1000 * eval(expression)) / 1000 + '';
+
+    setCurrentDisplay(answer);
+    setAccumulateDisplay(`${accumulateDisplay} = ${answer}`);
     setPrevDisplay(answer);
     setIsCalculated(true);
-  };
-
-  const handleDecimal = () => {
-    if (isCalculated) {
-      setCurrentDisplay('0');
-      setAccumulateDisplay('0');
-      setIsCalculated(false);
-    } else if (!currentDisplay.includes('.')) {
-      setIsCalculated(false);
-      setCurrentDisplay(currentDisplay + '.');
-      setAccumulateDisplay(accumulateDisplay + '.');
-    }
   };
 
   const reset = () => {
@@ -91,19 +49,42 @@ const Calculator = () => {
     setIsCalculated(false);
   };
 
+  const handleClick = ({ target }) => {
+    const value = target.innerText;
+
+    if (value === '=') return result();
+    if (value === 'AC') return reset();
+
+    setIsCalculated(false);
+
+    if (isCalculated) {
+      setCurrentDisplay(prevDisplay)
+      setAccumulateDisplay(prevDisplay)
+      return false
+    }
+
+    if (value === '.' && currentDisplay.includes('.')) return false;
+
+    if (currentDisplay === '0' || checkIsOperator(value))
+      setCurrentDisplay(value);
+    else setCurrentDisplay(currentDisplay + value);
+
+    if (!checkIsOperator(value)) {
+      if (accumulateDisplay === '' || accumulateDisplay === '0')
+        return setAccumulateDisplay(value);
+      return setAccumulateDisplay(accumulateDisplay + value);
+    }
+
+    return handleOperatorClick(value);
+  };
+
   return (
     <div className='Calculator'>
       <Display
         accumulateDisplay={accumulateDisplay}
         currentDisplay={currentDisplay}
       />
-      <ButtonsPad
-        handleNumberClick={handleNumberClick}
-        handleOperatorClick={handleOperatorClick}
-        result={result}
-        handleDecimal={handleDecimal}
-        reset={reset}
-      />
+      <ButtonsPad handleClick={handleClick} />
     </div>
   );
 };
