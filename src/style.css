@@ -2,3 +2,8 @@
     font-family: Lexend;
     src: url(./assets/Lexend-Medium.ttf);
   }
+
+@font-face {
+  font-family: Electrolize;
+  src: url(./assets/Electrolize-Regular.ttf);
+}
