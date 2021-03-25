@@ -1,0 +1,23 @@
+.display {
+  grid-area: display;
+  background: rgb(105, 117, 117);
+  width: 100%;
+  height: 70px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  font-family: Electrolize;
+}
+
+.display__accumulator {
+  color: rgb(252, 180, 0);
+}
+
+.display__current {
+  align-self: flex-end;
+  padding-right: 3px;
+
+  font-size: 1.8rem;
+}
