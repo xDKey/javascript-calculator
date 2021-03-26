@@ -73,7 +73,7 @@ const Calculator = () => {
   };
 
   return (
-    <div className='Calculator'>
+    <div className='calculator'>
       <Display
         accumulateDisplay={accumulateDisplay}
         currentDisplay={currentDisplay}
