@@ -1,1 +1,7 @@
-# [Live DEMO](https://xdkey.github.io/javascript-calculator/)
+## To run tests:
+```
+$ git clone https://github.com/xDKey/javascript-calculator.git
+$ cd ./javascript-calculator
+$ npm install
+$ npm test
+```
