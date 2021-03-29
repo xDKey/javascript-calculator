@@ -7,7 +7,11 @@
 
 # testing
 /coverage
+<<<<<<< HEAD
 .nyc_output/out.json
+=======
+/.nyc_output
+>>>>>>> test1
 
 # production
 /build

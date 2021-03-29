@@ -1,5 +1,5 @@
+import styled from 'styled-components';
 import Button from '../Button/Button';
-import './ButtonsPad.css';
 
 const buttons = {
   buttonsForNumpad: [
@@ -15,9 +15,7 @@ const buttons = {
   ],
 };
 
-const ButtonsPad = ({
-  handleClick,
-}) => {
+const ButtonsPad = ({ handleClick }) => {
   return (
     <>
       <Button id='clear' innerText='AC' handleClick={handleClick} />
@@ -27,7 +25,7 @@ const ButtonsPad = ({
       <Button id='add' innerText='+' handleClick={handleClick} />
       <Button id='equals' innerText='=' handleClick={handleClick} />
 
-      <div className='numpad'>
+      <NumPad >
         <Button id='zero' innerText={0} handleClick={handleClick} />
         <Button id='decimal' innerText='.' handleClick={handleClick} />
         {buttons.buttonsForNumpad.map((num, index) => (
@@ -38,9 +36,18 @@ const ButtonsPad = ({
             handleClick={handleClick}
           />
         ))}
-      </div>
+      </NumPad>
     </>
   );
 };
+
+const NumPad = styled.div`
+  grid-area: numpad;
+  width: 210px;
+
+  display: flex;
+
+  flex-wrap: wrap-reverse;
+`;
 
 export default ButtonsPad;
