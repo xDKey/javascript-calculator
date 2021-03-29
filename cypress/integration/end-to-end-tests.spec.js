@@ -1,8 +1,9 @@
+/* eslint-disable jest/valid-expect-in-promise */
 const numberButtons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 const operatorButtons = ['/', 'x', '-', '+', 'AC', '=', '.'];
 before(() => {
-    cy.visit('/')
-})
+  cy.visit('/');
+});
 
 describe('Correctly rendering', () => {
   it('Contain div.calculator', () => {
@@ -77,12 +78,6 @@ describe('Correctly computating on click "="', () => {
       .forEach((item) => cy.get('.button').contains(item).click());
     cy.get('@expression').contains('10+1.20-20x.5 = 1.2');
     cy.get('@res').contains('1.2');
-  });
-});
-
-describe('Should correctly continuing compute previous result after enter operands', () => {
-  afterEach(() => {
-    cy.contains('AC').click();
   });
   it('Correctly compute expression "1 + 1 = 2 + 1 = 3... etc"', () => {
     const example = '+ 1 ='.split(' ');
