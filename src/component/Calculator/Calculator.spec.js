@@ -44,7 +44,7 @@ describe('<Calculator />', () => {
   });
 
   it('Should correctly continuing compute previous result after enter operands', () => {
-    const example = '1+2=/+-+2...0+===';
+    const example = '1+2=/+--+2...0+===';
     example
       .split('')
       .forEach((item) => cy.get('.button').contains(item).click());
