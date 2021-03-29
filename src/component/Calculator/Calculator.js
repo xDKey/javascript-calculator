@@ -32,12 +32,11 @@ const Calculator = () => {
       ? accumulateDisplay.slice(0, -1)
       : accumulateDisplay;
 
-    expression = expression.replace(/x/g, '*');
     // eslint-disable-next-line no-eval
-    const answer = Math.round(10000 * eval(expression)) / 10000 + '';
+    const answer = Math.round(10000 * eval(expression.replace(/x/g, '*'))) / 10000 + '';
 
     setCurrentDisplay(answer);
-    setAccumulateDisplay(`${accumulateDisplay} = ${answer}`);
+    setAccumulateDisplay(`${expression} = ${answer}`);
     setPrevDisplay(answer);
     setIsCalculated(true);
   };
