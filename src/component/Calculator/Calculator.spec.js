@@ -1,4 +1,4 @@
-import { mount } from '@cypress/react';
+import { mount, unmount } from '@cypress/react';
 import Calculator from './Calculator';
 
 describe('<Calculator />', () => {
@@ -8,6 +8,7 @@ describe('<Calculator />', () => {
     cy.get('#display').as('result');
     cy.get('.display__accumulator').as('expression');
   });
+  after(() => unmount())
 
   it('Renders correcly', () => {
     cy.get('@expression').should('not.have.text');

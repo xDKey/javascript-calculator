@@ -1,4 +1,4 @@
-import { mount } from '@cypress/react';
+import { mount, unmount } from '@cypress/react';
 import Button from './Button';
 
 describe('<Button />', () => {
@@ -6,6 +6,7 @@ describe('<Button />', () => {
     const handleClick = cy.stub().as('click');
     mount(<Button innerText='test' id='test' handleClick={handleClick} />);
   });
+  after(() => unmount())
 
   it('Should renders correctly', () => {
     cy.get('.button').contains('test').should('have.id', 'test');

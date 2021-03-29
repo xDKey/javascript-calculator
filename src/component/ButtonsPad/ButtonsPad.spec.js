@@ -1,4 +1,4 @@
-import { mount } from '@cypress/react';
+import { mount, unmount } from '@cypress/react';
 import ButtonsPad from './ButtonsPad';
 import '../Calculator/Calculator.css'
 
@@ -15,6 +15,7 @@ describe('<ButtonsPad />', () => {
     );
     mount(<TestButtonsPad />);
   });
+  after(() => unmount())
 
   it('Contain 10 buttons with digits', () => {
     numberButtons.forEach((item) => cy.get('.button').contains(item));
