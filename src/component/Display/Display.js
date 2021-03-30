@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Display = ({ accumulateDisplay, currentDisplay }) => {
   return (
     <StyledDisplay>
-      <DisplayAccumulator>{accumulateDisplay}</DisplayAccumulator>
+      <DisplayAccumulator id='expression'>{accumulateDisplay}</DisplayAccumulator>
       <DisplayCurrent id='display'>{currentDisplay}</DisplayCurrent>
     </StyledDisplay>
   );
