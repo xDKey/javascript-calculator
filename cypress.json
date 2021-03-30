@@ -5,7 +5,7 @@
   "componentFolder": "src",
   "env": {
     "cypress-react-selector": {
-      "root": "#root"
+      "root": "#cypress-root"
     }
   }
 }
